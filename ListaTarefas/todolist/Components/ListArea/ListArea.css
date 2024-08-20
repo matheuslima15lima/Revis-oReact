@@ -1,0 +1,16 @@
+
+:root{
+    --RoxoEscuro: #1E123B;
+}
+.listArea{
+    background-color: var(--RoxoEscuro);
+    width: 743.81px;
+    height: 495.36px;
+    border: 2px solid var(--RoxoEscuro);
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+
+    flex-direction: column;
+    
+}

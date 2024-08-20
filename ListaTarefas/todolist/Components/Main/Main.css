@@ -1,0 +1,10 @@
+.main-content{
+    /* flex: 1; */
+    height: 100%;
+    width: 100%;
+    background-color:transparent;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    margin-left: 530px;
+};
