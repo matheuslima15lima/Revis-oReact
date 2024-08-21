@@ -4,9 +4,14 @@ import './Main.css';
 const Main = ({children}) =>{
 
     return (
-        <div className='main-content'>
+        <div className='main'>
+            <div
+                className="main-content"
+            >
+                  {children}
+            </div>
           {/* <p>Banana</p> */}
-             {children}
+           
 
         </div>
     )

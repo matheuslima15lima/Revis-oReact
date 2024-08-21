@@ -12,7 +12,7 @@ const Input =({ onChange, type, placeholder, name, id, value })=>{
             id={id}
             value={value}
         >
-        
+         {/* <img src='./assets/Search.svg'></img> */}
         </input>
     )
 }

@@ -1,10 +1,26 @@
+
+    .main{
+        display: flex;
+        height: 100vh; /* Ou outra altura adequada */
+        width: 100vw;  /* Ou outra largura adequada */
+        background-color: #8758FF; /* Apenas para visualização */
+    }
 .main-content{
-    /* flex: 1; */
+    /* flex: 1;
     height: 100%;
     width: 100%;
     background-color:transparent;
     align-items: center;
     justify-content: center;
-    align-self: center;
-    margin-left: 530px;
+    align-self: center; */
+    /* margin-left: 530px; */
+
+   
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 };
