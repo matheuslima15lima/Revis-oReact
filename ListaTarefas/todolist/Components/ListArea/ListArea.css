@@ -9,7 +9,7 @@
     border: 2px solid var(--RoxoEscuro);
     display: flex;
     align-items: center;
-    justify-content:flex-start;
+    justify-content:center;
     /* position: relative; */
     border-radius: 7.72px;
     flex-direction: column;
