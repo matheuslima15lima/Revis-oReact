@@ -24,4 +24,6 @@
     margin-right: 300px;
     margin-top: 0; /* Remove a margem superior desnecessária */
     border:1px solid white;
+    margin-bottom: 40px;
+    color: #ffff;
 }

@@ -7,21 +7,8 @@ import Title from '../Components/Title/Title'
 import Input from '../Components/Input/Input'
 import Modal from './Modal/Modal'
 import Button from '../Components/Button/Button'
+import Task from '../Components/Tasks/Task'
 
-// import './App.css'
-// import '../Styles/Style.css' 
-
-// const date = new Date();
-// function formatDate(date, format) {
-//   const map = {
-//       mm: date.getMonth() + 1,
-//       dd: date.getDate(),
-//       aa: date.getFullYear().toString().slice(-2),
-//       aaaa: date.getFullYear()
-//   }
-
-//   return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
-// }
 
 
 const getCurrentDate = () => {
@@ -36,17 +23,54 @@ function App({
   type= "Text"
 }) {
 
-  const [tarefas, setTarefas ] = useState(["Fazer projeto","Começar a execução do projeto", "Testar Projeto"]);
+  const [tarefas, setTarefas ] = useState([
+    {
+    id: 1, 
+    text: "Criar funcionalidade de cadastro de usuario",
+    IsCompleted: false
+  },
+    {
+    id: 2, 
+    text: "Criar listagem de usuários",
+    IsCompleted: false
+  },
+    {
+    id: 3, 
+    text: "Criar funcionalidade de deletar usuários",
+    IsCompleted: false
+  },
+
+
+  
+]);
 
   // const tarefasLista = [
   //   "Fazer projeto",
   //   "Testar projeto",
   //   "Concluir projeto"
   // ];
-
-  const [showModal, setShowModal] = useState(false);
   // const [count, setCount] = useState(0)
   // const DataAtual = Date.now();
+
+  const [showModal, setShowModal] = useState(false);
+
+  const completarTarefa = (id)=>{
+    const newTarefas = [...tarefas]
+
+    newTarefas.map((tarefa)=> tarefa.id === id ? tarefa.IsCompleted = !tarefa.IsCompleted : tarefa);
+    setTarefas(newTarefas);
+  };
+
+  const removerTarefa=(id)=>{
+    //cria uma variavell com todas as tarefas
+    const newTarefas = [...tarefas]
+
+    //filtro para retornar os ids diferentes do id selecionado
+    const filteredTarefas = newTarefas.filter((tarefa=>
+      tarefa.id !== id ? tarefa : null
+    ));
+    setTarefas(filteredTarefas);
+  }
   return (
     <>
       <Main>
@@ -58,9 +82,13 @@ function App({
           placeholder={placeholder}
           type={type}
         >
-
-         
         </Input>
+
+        { tarefas.map((tarefa)=>(
+          
+          <Task key={tarefa.id} tarefa={tarefa} removerTarefa={removerTarefa} completarTarefa={completarTarefa}/>
+        ))}
+
 
        </ListArea>
       {/* <Button

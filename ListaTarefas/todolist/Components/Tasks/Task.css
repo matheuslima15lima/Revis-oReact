@@ -1,0 +1,46 @@
+
+
+.Container-Task{
+    width: 80%;
+    height:61.73px;
+    border:1px solid transparent;
+    border-radius: 7px;
+    background-color: #ffff;
+    margin-bottom:10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.Text-Task{
+    font-size: 15px;
+}
+
+.Check{
+    width:27.01px;
+    height:27.01px;
+    border-radius: 4px;
+}
+
+.Check-Container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.Cancel{
+    height: 40px;
+    width: 40px;
+    color: #1E123B;
+}
+
+.Button-Icon{
+    height:40px;
+    width:40px;
+    background-color: transparent;
+    margin-right: 10px;
+}
