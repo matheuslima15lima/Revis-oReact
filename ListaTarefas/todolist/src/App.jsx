@@ -47,8 +47,8 @@ function App({
     },
     content: {
       display: 'flex',
-      alignItems:'center', 
-      justifyContent:'center',
+      alignItems: 'center',
+      justifyContent: 'center',
       position: 'absolute',
       top: '50%',
       left: '50%',
@@ -118,24 +118,37 @@ function App({
 
 
   const [value, setValue] = useState("");
-  const handleSubmit =(e)=>{
-    e.preventDefault();
-    if(!value) return;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!value) return;
+    addTarefa(value);
+    setValue("");
+    fecharModal();
   }
 
 
-    const addTarefa=(text)=>{
+  const addTarefa = (text) => {
+
+    try {
       //variavel que mantem os items na lista e adiciona um novo
-      const newTarefas= [...tarefas,{
+      const newTarefas = [...tarefas, {
         id: Math.floor(Math.random() * 10000),
         text,
         IsCompleted: false,
       },
-    ];
+      ];
 
       setTarefas(newTarefas);
+    } catch (error) {
+
     }
+
+    
+
+
+
+  }
 
   const completarTarefa = (id) => {
     const newTarefas = [...tarefas]
@@ -193,17 +206,22 @@ function App({
         style={customStyles}
       >
         <ListArea>
-          <InputLarge
-            placeholder={placeholder}
-            type={type}
-            // onChange={handleInputChange()}
-          />
+          
 
-          <Button
-            textButton="Confirmar Tarefa"
-            type="submit"
-            onClick={() => fecharModal()}
-          />
+
+            <InputLarge
+              placeholder={placeholder}
+              type={type}
+              onChange={(txt) => setValue(txt)}
+            />
+
+            <Button
+              textButton="Confirmar Tarefa"
+              type="submit"
+              onClick={() => handleSubmit()}
+            />
+
+         
         </ListArea>
       </ReactModal>
     </>
