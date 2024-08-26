@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Task.css'
-const Task = ({ tarefa, completarTarefa , removerTarefa }) => {
+const Task = ({tarefa, completarTarefa , removerTarefa , atualizarTarefa}) => {
+    const [showModal, setShowModal] = useState(false);
+    
     return (
         
 

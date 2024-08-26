@@ -114,40 +114,48 @@ function App({
   // const [count, setCount] = useState(0)
   // const DataAtual = Date.now();
 
-  const [showModal, setShowModal] = useState(false);
+
 
 
   const [value, setValue] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!value) return;
-    addTarefa(value);
-    setValue("");
-    fecharModal();
-  }
+  //const handleSubmit = (e) => {
+   // e.preventDefault();
+    //if (!value) return;
+    //addTarefa(value);
+    //fecharModal();
+   // setValue("");
+  //}
 
 
-  const addTarefa = (text) => {
+  const [txtTask , setTxtTask] = useState("");
+  const addTarefa = () => {
 
     try {
+
       //variavel que mantem os items na lista e adiciona um novo
       const newTarefas = [...tarefas, {
         id: Math.floor(Math.random() * 10000),
-        text,
+        text: txtTask,
         IsCompleted: false,
       },
       ];
-
+        
+      //setValue(newTarefas)
       setTarefas(newTarefas);
+        setTxtTask("");
+      fecharModal();
     } catch (error) {
 
     }
+  }
 
-    
+  const atualizarTarefa =()=>{
+      const newTarefas = [...tarefas]
 
-
-
+      const filteredTarefas = newTarefas.filter((tarefa => 
+        tarefa.id !== id? tarefa : tarefa.text = txtTask
+      ))
   }
 
   const completarTarefa = (id) => {
@@ -208,17 +216,18 @@ function App({
         <ListArea>
           
 
-
+            
             <InputLarge
               placeholder={placeholder}
               type={type}
-              onChange={(txt) => setValue(txt)}
+              value={txtTask}
+              onChange={(e) => setTxtTask(e.target.value) }
             />
 
             <Button
               textButton="Confirmar Tarefa"
-              type="submit"
-              onClick={() => handleSubmit()}
+              type="button"
+              onClick={() => addTarefa()}
             />
 
          
