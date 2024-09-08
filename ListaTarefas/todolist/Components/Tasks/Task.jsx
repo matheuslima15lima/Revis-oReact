@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
 import './Task.css'
-const Task = ({tarefa, completarTarefa , removerTarefa , atualizarTarefa}) => {
+import ReactModal from 'react-modal';
+import ListArea from '../ListArea/ListArea';
+import InputLarge from '../InputLarge/InputLarge';
+import Button from '../Button/Button';
+const Task = ({ atualizarTarefa, txtTask,
+   setTxtTask, tarefa, customStyles, 
+   fecharModal, abrirModal, modalIsOpen,
+    completarTarefa ,removerTarefa}) => {
     const [showModal, setShowModal] = useState(false);
     
     return (
@@ -24,11 +31,43 @@ const Task = ({tarefa, completarTarefa , removerTarefa , atualizarTarefa}) => {
                >
                <img className='Cancel' src='../../src/assets/Cancel.svg' alt='Botão de deletar tarefa '/>
                 </button> 
-                <button className='Button-Icon'>
+                <button className='Button-Icon'
+                  onClick={abrirModal}
+                >
                 <img className='Cancel' src='../../src/assets/Edit.svg' alt='Botão de editar tarefa '/>
                 </button>
                
             </div>
+
+
+
+             
+      <ReactModal
+        isOpen={modalIsOpen}
+        onRequestClose={fecharModal}
+        contentLabel='Criar Tarefa'
+        style={customStyles}
+      >
+        <ListArea>
+          
+
+            
+            <InputLarge
+              placeholder= {tarefa.text}
+              type="Text"
+              value={txtTask}
+              onChange={(e) => setTxtTask(e.target.value) }
+            />
+
+            <Button
+              textButton="Atualizar"
+              type="button"
+              onClick={() => atualizarTarefa()}
+            />
+
+         
+        </ListArea>
+      </ReactModal>
         </div>
         
     )

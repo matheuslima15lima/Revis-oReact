@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ListArea from "../../Components/ListArea/ListArea";
 import InputLarge from "../../Components/InputLarge/InputLarge";
 import Button from "../../Components/Button/Button";
+import ReactModal from 'react-modal'
 
 const Modal =({
     placeholder="Procurar tarefa",
@@ -26,19 +27,32 @@ const Modal =({
     return(
 
         
-         <ListArea>
+        <ReactModal
+        isOpen={modalIsOpen}
+        onRequestClose={fecharModal}
+        contentLabel='Atualizar Tarefa'
+        style={customStyles}
+      >
+        <ListArea>
+          
+
+            
             <InputLarge
-                 placeholder={placeholder}
-                 type={type}
-                 onChange={handleInputChange()}
+              placeholder={placeholder}
+              type={type}
+              value={txtTask}
+              onChange={(e) => setTxtTask(e.target.value) }
             />
 
             <Button
-                textButton="Confirmar Tarefa"
-                type="submit"
-                onClick={()=>handleConfirm()}
+              textButton="Confirmar Tarefa"
+              type="button"
+              onClick={() => addTarefa()}
             />
-         </ListArea>   
+
+         
+        </ListArea>
+      </ReactModal>
 
     )
 }

@@ -15,6 +15,7 @@ import InputLarge from '../Components/InputLarge/InputLarge'
 
 
 
+
 // Código necessário para os recursos de acessibilidade
 ReactModal.setAppElement('#root');
 
@@ -32,6 +33,9 @@ function App({
   type = "Text"
 }) {
 
+  // Hook que demonstra se a modal está aberta ou não
+const [modalIsOpen, setIsOpen] = useState(false);
+const [value, setValue] = useState("");
 
 
 
@@ -56,8 +60,8 @@ function App({
       width: '700px',
       height: '500px',
       border: '1px solid #ccc',
-      background: '#fff',
-      // overflow: 'auto',
+      background: '#1E123B',
+       overflow: 'hidden',
       // WebkitOverflowScrolling: 'touch',
       borderRadius: '4px',
       outline: 'none',
@@ -68,8 +72,6 @@ function App({
 
 
 
-  // Hook que demonstra se a modal está aberta ou não
-  const [modalIsOpen, setIsOpen] = useState(false);
 
 
 
@@ -106,28 +108,7 @@ function App({
 
   ]);
 
-  // const tarefasLista = [
-  //   "Fazer projeto",
-  //   "Testar projeto",
-  //   "Concluir projeto"
-  // ];
-  // const [count, setCount] = useState(0)
-  // const DataAtual = Date.now();
-
-
-
-
-  const [value, setValue] = useState("");
-
-  //const handleSubmit = (e) => {
-   // e.preventDefault();
-    //if (!value) return;
-    //addTarefa(value);
-    //fecharModal();
-   // setValue("");
-  //}
-
-
+  
   const [txtTask , setTxtTask] = useState("");
   const addTarefa = () => {
 
@@ -150,12 +131,22 @@ function App({
     }
   }
 
-  const atualizarTarefa =()=>{
+  const atualizarTarefa =(id)=>{
       const newTarefas = [...tarefas]
 
-      const filteredTarefas = newTarefas.filter((tarefa => 
-        tarefa.id !== id? tarefa : tarefa.text = txtTask
-      ))
+      const filteredTarefas = newTarefas.filter((tarefa) => {
+        if(tarefa.id === id){
+          setTarefas({...tarefa, text:value});
+        }
+        return tarefa;
+
+        
+      }
+    
+    );
+
+
+  
   }
 
   const completarTarefa = (id) => {
@@ -190,8 +181,21 @@ function App({
 
           {tarefas.map((tarefa) => (
 
-            <Task key={tarefa.id} tarefa={tarefa} removerTarefa={removerTarefa} completarTarefa={completarTarefa} />
+            <Task 
+            atualizarTarefa={atualizarTarefa}
+            txtTask={txtTask} 
+            setTxtTask={setTxtTask}
+             customStyles={customStyles}
+              fecharModal={fecharModal}
+               abrirModal={abrirModal} 
+               modalIsOpen={modalIsOpen} 
+               key={tarefa.id} 
+               tarefa={tarefa}
+               removerTarefa={removerTarefa}
+               completarTarefa={completarTarefa} 
+                 />
           ))}
+
 
 
         </ListArea>
@@ -233,6 +237,7 @@ function App({
          
         </ListArea>
       </ReactModal>
+     
     </>
   )
 }
